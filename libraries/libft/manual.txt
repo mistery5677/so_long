@@ -1,0 +1,218 @@
+FT_ATOI:
+Recebe: const char *nptr.
+Retorna: int.
+Description: Transforma uma string de characters,em um valor int.
+
+FT_BZERO:
+Recebe: void *, size_t.
+Retorna: void
+Description: Substitui 'n' bytes no void *, por '\0'.
+
+FT_CALLOC:
+Recebe: size_t, size_t.
+Retorna: Void *.
+Description: Retorna uma string com '\0'
+
+FT_ISALNUM:
+Recebe: int c.
+Retorna: int.
+Description: Retorna 1, caso 'c' seja um int ou caracter, ou 0 caso nao seja.
+
+FT_ISALPHA:
+Recebe: int c.
+Retorna: int.
+Description: Retorna 1, caso 'c' seja um caracter, ou 0 caso nao seja.
+
+FT_ISASCII:
+Recebe: int c.
+Retorna: int
+Description: Retorna 1, caso 'c' pertenca a tabela de ascii, ou 0 caso nao seja.
+
+FT_ISDIGIT:
+Recebe: int c.
+Retorna: int.
+Description: Retorna 1, caso 'c' seja um int, ou 0 caso nao seja.
+
+FT_ISPRINT:
+Recebe: int c. 
+Retorna: int.
+Description: Retorna 1, caso 'c' seja printavel, ou 0 caso nao seja.
+
+FT_ITOA:
+Recebe: int n.
+Retorna: char *.
+Description: Recebe um int, e transforma esse int em uma string de caracteres.
+
+FT_MEMCHR:
+Recebe: const void *s, int c, size_t n.
+Retorna: void *. 
+Description: Vai verificar os 'n' bytes em 's' ate encontrar c. Se nao houver igual, retorna NULL, se nao, retorna o endereco da memoria
+
+FT_MEMCMP:
+Recebe: const void *s1, const void *s2, size_t n.
+Retorna: int.
+Description: Compara ambas as strings (const unsigned char) 's1' com 's2', caso o valor de 's1' seja maior que 's2', retorna positivo, ou negativo se for o contrario, ou null se nao houver diferenca.
+
+FT_MEMCPY:
+Recebe: void *dest, const void src, size_t n.
+Retorna: Dest com o conteudo do 'src'
+Description: Vai copiar 'n' bytes do 'src', para dentro do 'dest'
+
+FT_MEMMOVE:
+Recebe: void *str1, const void *str2, size_t n.
+Retorna: void *
+Description: Vai pegar o valor de 'str2' e colocar em 'str1' sem causar overlap, ou seja, caso 'str1' for maior que 'str2' comecamos pelo contrario, caso nao seja, comecamos pelo inicio para o fim.
+
+FT_MEMSET:
+Recebe: void *s, int c, size_t n.
+Retorna: void *
+Description: Vai retornar 's' com 'n' bytes, com a memoria com valor de 'c'
+
+FT_PUTCHAR_FD:
+Recebe: char c, int fd.
+Retorna: void.
+Description: Vai escrever 'c' no file decriptor 'fd'.
+
+FT_PUTENDL_FD:
+Recebe: char *s, int fd.
+Retorna: void.
+Description: Vai escrever 's' em 'fd' e acrescentar um '\n'
+
+FT_PUTNBR_FD:
+Recebe: int n, int fd.
+Retorna: void
+Description: Vai escrever o numero 'n' em 'fd'.
+
+FT_PUTSTR_FD:
+Recebe: char *s, int fd.
+Retorna: void.
+Description: Vai escrever 's' em 'fd'
+
+FT_SPLIT:
+Recebe: char const *s, char c.
+Retorna: char **
+Description: Vai dividir 's' sempre que encontrar c, e armazena o valor num array de strings.
+
+FT_STRCHR:
+Recebe: const char *s, int c.
+Retorna: char *.
+Description: Vai procurar 'c' em 's' e retornar a string a partir dai, incluindo 'c'
+
+FT_STRDUP:
+Recebe: char *src.
+Retorna: char *
+Description: Cria uma copia de src, e retorna essa copia.
+
+FT_STRITERI:
+Recebe: char *s, void (*f)(unsigned int , char *).
+Retorna: void.
+Description: Vai iterear cada letra de 's' a partir da funcao 'f'.
+
+FT_STRJOIN:
+Recebe: char const *s1, char const *s2.
+Retorna: char *
+Description: Vai juntar as duas strings, e retornar as duas strings concatnadas.
+
+FT_STRLCAT:
+Recebe: char *dst, const char *src, size_t size.
+Retorna: size_t.
+Description: Vai concatenar as duas strings caso 'size' seja maior que o tamanho de 'dest'. Caso nao seja maior, vai retornar o tamanho de 'src' + 'size'.
+        Caso 'dst' seja maior que 'size', vai concatnar 'size' bytes de 'src', e retornar o tamanho de 'dst' + 'src'
+
+FT_STRLCPY:
+Recebe: char *dst, const char *src, size_t size.
+Retorna: size_t
+Description: Vai copir 'size' bytes - 1 de src, para o 'dst' e retornar o tamanho de 'src'
+
+FT_STRLEN:
+Recebe: const char *s.
+Retorna: size_t.
+Description: Retorna o tamanho de 's'.
+
+FT_STRMAPI:
+Recebe: char const *s, char (*f)(unsigned int, char)
+Retorna: char *
+Description: Funciona da mesma forma de 'ft_strdup', mas e prototipada de forma diferente.
+
+FT_STRNCMP:
+Recebe: const char *s1, const char *s2, size_t n.
+Retorna: int.
+Description: Comprara 'n' bytes entre 's1' e 's2'.
+
+FT_STRNSTR:
+Recebe: const char *big, const char *little, size_t len
+Retorna: char *.
+Description: Vai encontrar 'little' no 'big' em apenas em 'len' bytes, caso encontre retorna a string a partir do ponto que encontro 'little'
+
+FT_STRRCHR
+Recebe: const char *s, int c.
+Retorna: char *.
+Description: Vai a procura da ultima vez que aparece 'c' em 's' e retorna a string a partir desse momento
+
+FT_STRTRIM:
+Recebe: char const *s1, char const *set.
+Retorna: char *
+Description: Vai verificar as letras de 'set' no inicio e no fim de 's1' e vai retornar a partir do momento em que nao encontrar nenhum caracter de 'set' em 's1'
+
+FT_SUBSTR:
+Recebe: char const *s, unsigned int start, size_t len
+Retorna: char *
+Description: Vai retornar uma nova string, em que vai ser 's' e o comeco vai ser a partir de 'start' e com um tamanho de 'len' bytes
+
+FT_TOLOWER:
+Recebe: int c.
+Retorna: int
+Description: Retorna 'c' em minusculo.
+
+FT_TOUPPER:
+Recebe: int c.
+Retorna: int
+Description: Retorna 'c' em maiusculo.
+
+-------> BONUS <-------
+
+FT_LSTADD_BACK:
+Recebe: t_list **lst, t_list *new.
+Retorna: void.
+Description: Adiciona t_list 'new' ao final de 'lst'.
+
+FT_LSTADD_FRONT:
+Recebe: t_list **lst, t_list *new
+Retorna: void.
+Description: Adiciona 'new' a 'lst'
+
+FT_LSTCLEAR:
+Recebe: t_list **lst, void(*del)(void *)
+Retorna: void.
+Description: Vai limpar o content de toda a 'lst' a partir da funcao 'del'
+
+FT_LSTDELONE:
+Recebe: t_list *lst, void (*del)(void *)
+Retorna: void.
+Description: Limpa o content de 'lst' atraves da funcao 'del'
+
+FT_LSTITER:
+Recebe: t_list *lst, void (*f)(void *)
+Retorna: void
+Description: Itera a 'lst' atraves da funcao 'f'
+
+FT_LSTLAST:
+Recebe: t_list *lst
+Retorna: t_list *
+Description: Retorna a ultima lista
+
+FT_LSTMAP:
+Recebe: t_list *lst, void *(*f)(void *), void (*del)(void *)
+Retorna: t_list *.
+Description: Vai copiar o node 'lst' e vai retornar essa copia
+
+FT_LSTNEW:
+Recebe: void *content
+Retorna: t_list *
+Description: Cria uma lista.
+
+FT_LSTSIZE:
+Recebe: t_list *lst
+Retorna: int.
+Description: Retorna o tamanho de 'lst'
+
