@@ -105,16 +105,15 @@ int change_color(t_data *img)
 
 int main ()
 {
-        t_win win;
         t_data img;
 
-        win.mlx = mlx_init();
-        win.mlx_win = mlx_new_window(win.mlx, 1920, 1080, "Hello World");
-        img.img = mlx_new_image(win.mlx, LENGTH , HEIGHT);
+        img.mlx = mlx_init();
+        img.mlx_win = mlx_new_window(img.mlx, 1920, 1080, "Hello World");
+        img.img = mlx_new_image(img.mlx, LENGTH , HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
         printf("main addr %s\n", img.addr);
-        mlx_loop_hook(win.mlx, change_color, &img);
-        mlx_put_image_to_window(win.mlx, win.mlx_win, img.img, 0, 0);
-        mlx_loop(win.mlx);
+        mlx_loop_hook(img.mlx, change_color, &img);
+        mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+        mlx_loop(img.mlx);
 }

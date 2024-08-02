@@ -13,14 +13,10 @@
 #define HEIGHT 1080
 #endif
 
-typedef struct s_list
-{
-	void    *mlx;
-        void    *mlx_win;
-}					t_win;
-
 typedef struct s_data
 {
+        void    *mlx;
+        void    *mlx_win;
         void    *img;
         char    *addr;
         int     bits_per_pixel;
@@ -28,6 +24,6 @@ typedef struct s_data
         int     endian;
 }                                       t_data;
 
-void init_win(t_win *map);
+void init_win(t_data *map);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 #endif

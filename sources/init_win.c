@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void init_win(t_win *map)
+void init_win(t_data *map)
 {
         map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, LENGTH, HEIGHT, "Hello world!");
