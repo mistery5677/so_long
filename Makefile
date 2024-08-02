@@ -4,7 +4,7 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 MINILIBX_PATH		=	./libraries/minilibx
 MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 
-SOURCES_FILES		=	main.c
+SOURCES_FILES		=	main.c init_win.c
 
 SOURCES_DIR		=	sources
 
