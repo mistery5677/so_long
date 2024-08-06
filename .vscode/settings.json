@@ -2,6 +2,8 @@
         "files.associations": {
                 "string.h": "c",
                 "so_long.h": "c",
-                "stdio.h": "c"
+                "stdio.h": "c",
+                "mlx.h": "c",
+                "stdlib.h": "c"
         }
 }

@@ -80,26 +80,37 @@ int	main(void)
 	mlx_loop(win.mlx);
 } */
 
-void test()
-{
 
-}
-
-int change_color(t_data *img)
+// Vai criar uma janaela que vai mudar de cor a cada segundo (rosa -> verde -> azul)
+/* void screen_color(t_data *img, long int color)
 {
-        int y = 0;
+        int y;
         int x;
-        printf("function addr %s\n", img->addr);
+
+        y = 0;
         while(y < HEIGHT)
         {
                 x = 0;
                 while(x < LENGTH)
                 {
-                        my_mlx_pixel_put(img,  x, y, 0x00FF00FF);
+                        my_mlx_pixel_put(img, x, y, color);
                         x++;
                 }
                 y++;
         }
+}
+
+int change_color(t_data *img)
+{
+        if(img->color == 0x00FF00FF || img->color == 0)
+                img->color = 0x0000FF1A;
+        else if(img->color == 0x0000FF1A)
+                img->color = 0x0000ABFF;
+        else if(img->color == 0x0000ABFF)
+                img->color = 0x00FF00FF;
+        
+        screen_color(img, img->color);
+        mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
         return 0;
 }
 
@@ -107,13 +118,54 @@ int main ()
 {
         t_data img;
 
+        img.color = 0;
         img.mlx = mlx_init();
-        img.mlx_win = mlx_new_window(img.mlx, 1920, 1080, "Hello World");
+        img.mlx_win = mlx_new_window(img.mlx, LENGTH, HEIGHT, "Hello World");
         img.img = mlx_new_image(img.mlx, LENGTH , HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-        printf("main addr %s\n", img.addr);
         mlx_loop_hook(img.mlx, change_color, &img);
-        mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
         mlx_loop(img.mlx);
-}
+} */
+
+/* int main()
+{
+        t_data data;
+        char *img_path = "./sus.png";
+        init_win(&data);
+        data.img = mlx_new_image(data.mlx, LENGTH, HEIGHT);
+        data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+
+        mlx_loop(data.mlx);
+} */
+
+/* void screen_color(t_data *img, unsigned int color)
+{
+        int y;
+        int x;
+
+        y = 0;
+        while(y < HEIGHT)
+        {
+                x = 0;
+                while(x < LENGTH)
+                {
+                        my_mlx_pixel_put(img, x, y, color);
+                        x++;
+                }
+                y++;
+        }
+} */
+
+int main(int argc, char **argv)
+{
+        t_data data;
+        if(argc > 1)
+        {
+                read_map(&data, argv[1]);
+                init_game(&data);
+                gameplay(&data);
+                mlx_loop(data.mlx);
+        }
+        free_map(&data);
+}       
