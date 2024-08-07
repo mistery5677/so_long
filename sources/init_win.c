@@ -4,6 +4,9 @@ static void load_img(t_data *data)
 {
         data->wall = mlx_xpm_file_to_image(data->mlx, "./assets/bush.xpm", &data->map_w, &data->map_h);
         data->back = mlx_xpm_file_to_image(data->mlx, "./assets/grass.xpm", &data->map_w, &data->map_h);
+        data->player = mlx_xpm_file_to_image(data->mlx, "./assets/dog.xpm", &data->map_w, &data->map_h);
+        data->collect = mlx_xpm_file_to_image(data->mlx, "./assets/bone.xpm", &data->map_w, &data->map_h);
+        data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit.xpm", &data->map_w, &data->map_h);
 }
 
 static void window_size_init(t_data *data)

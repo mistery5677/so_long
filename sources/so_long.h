@@ -24,13 +24,21 @@ typedef struct s_data
         int     map_h;
         void    *wall;
         void    *back;
+        void    *player;
+        void    *collect;
+        void    *exit;
 }                                       t_data;
 
 void init_game(t_data *map);
 void read_map(t_data *data, char *path);
-void free_map(t_data *data);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int map_draw(t_data *data);
 void img_draw(t_data *data, void *img, int x, int y);
 void gameplay(t_data *data);
+//moves
+void move_right(t_data *data, int x, int y);
+void move_left(t_data *data, int x, int y);
+void move_up(t_data *data, int x, int y);
+void move_down(t_data *data, int x, int y);
+
 #endif

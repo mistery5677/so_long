@@ -167,5 +167,4 @@ int main(int argc, char **argv)
                 gameplay(&data);
                 mlx_loop(data.mlx);
         }
-        free_map(&data);
 }       
