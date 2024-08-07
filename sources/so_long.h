@@ -20,13 +20,18 @@ typedef struct s_data
         void    *mlx;
         void    *win;
         char    **map;
-        int     map_w;
-        int     map_h;
+        int     width;
+        int     height;
         void    *wall;
         void    *back;
         void    *player;
         void    *collect;
         void    *exit;
+        int     wall_flag;
+        int     back_flag;
+        int     player_flag;
+        int     collect_flag;
+        int     exit_flag;
 }                                       t_data;
 
 void init_game(t_data *map);
@@ -40,5 +45,8 @@ void move_right(t_data *data, int x, int y);
 void move_left(t_data *data, int x, int y);
 void move_up(t_data *data, int x, int y);
 void move_down(t_data *data, int x, int y);
+int close_game(t_data *data);
+void free_map(t_data *data);
+int check_map(t_data* data);
 
 #endif

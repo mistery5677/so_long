@@ -2,11 +2,11 @@
 
 static void load_img(t_data *data)
 {
-        data->wall = mlx_xpm_file_to_image(data->mlx, "./assets/bush.xpm", &data->map_w, &data->map_h);
-        data->back = mlx_xpm_file_to_image(data->mlx, "./assets/grass.xpm", &data->map_w, &data->map_h);
-        data->player = mlx_xpm_file_to_image(data->mlx, "./assets/dog.xpm", &data->map_w, &data->map_h);
-        data->collect = mlx_xpm_file_to_image(data->mlx, "./assets/bone.xpm", &data->map_w, &data->map_h);
-        data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit.xpm", &data->map_w, &data->map_h);
+        data->wall = mlx_xpm_file_to_image(data->mlx, "./assets/bush.xpm", &data->width, &data->height);
+        data->back = mlx_xpm_file_to_image(data->mlx, "./assets/grass.xpm", &data->width, &data->height);
+        data->player = mlx_xpm_file_to_image(data->mlx, "./assets/dog.xpm", &data->width, &data->height);
+        data->collect = mlx_xpm_file_to_image(data->mlx, "./assets/bone.xpm", &data->width, &data->height);
+        data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit.xpm", &data->width, &data->height);
 }
 
 static void window_size_init(t_data *data)
@@ -14,17 +14,17 @@ static void window_size_init(t_data *data)
         int i;
 
         i = 0;
-        data->map_w = ft_strlen(data->map[0]) * 32;
+        data->width = ft_strlen(data->map[0]) * 32;
         while(data->map[i])
                 i++;
-        data->map_h = i * 32;
+        data->height = i * 32;
 }
 
 void init_game(t_data *data)
 {
         data->mlx = mlx_init();
 	window_size_init(data);
-        data->win = mlx_new_window(data->mlx, data->map_w, data->map_h, "So_long");
+        data->win = mlx_new_window(data->mlx, data->width, data->height, "So_long");
         load_img(data);
         map_draw(data);
 }

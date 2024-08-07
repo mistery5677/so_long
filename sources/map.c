@@ -16,6 +16,7 @@ void read_map(t_data *data, char *path)
                 str = get_next_line(fd);
         }
         data->map = ft_split(backup, '\n');
+        data->width = ft_strlen(data->map[0]);
         free(backup);
         free(str);
         close(fd);

@@ -1,33 +1,5 @@
 #include "so_long.h"
 
-static void free_map(t_data *data)
-{
-        int i;
-
-        i = 0;
-        while(data->map[i])
-        {
-                free(data->map[i]);
-                i++;
-        }
-        free(data->map);
-}
-
-static int close_game(t_data *data)
-{
-        free_map(data);
-        mlx_destroy_image(data->mlx, data->back);
-        mlx_destroy_image(data->mlx, data->wall);
-        mlx_destroy_image(data->mlx, data->collect);
-        mlx_destroy_image(data->mlx, data->exit);
-        mlx_destroy_image(data->mlx, data->player);
-        mlx_destroy_window(data->mlx, data->win);
-        mlx_destroy_display(data->mlx);
-        free(data->mlx);
-        exit(0);
-        return 0;
-}
-
 static int key_press(int key_pressed, t_data *data)
 {
         int x;
@@ -43,7 +15,6 @@ static int key_press(int key_pressed, t_data *data)
                 if(data->map[y][x] != 'P')
                         y++;
         }
-        printf("%d\n", key_pressed);
         if(key_pressed == 100 || key_pressed == 65363)
                 move_right(data, x, y);
         else if(key_pressed == 97 || key_pressed == 65361)
