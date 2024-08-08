@@ -26,8 +26,6 @@ int map_draw(t_data *data)
                                 img_draw(data, data->collect, x, y);
                         else if(data->map[y][x] == 'E')
                                 img_draw(data, data->exit, x, y);
-                        else
-                                printf("nao e 1\n");
                         x++;
                 }
                 y++;

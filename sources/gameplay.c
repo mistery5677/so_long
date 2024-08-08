@@ -15,6 +15,7 @@ static int key_press(int key_pressed, t_data *data)
                 if(data->map[y][x] != 'P')
                         y++;
         }
+        printf("key pressed %d \n", key_pressed);
         if(key_pressed == 100 || key_pressed == 65363)
                 move_right(data, x, y);
         else if(key_pressed == 97 || key_pressed == 65361)
