@@ -32,6 +32,7 @@ typedef struct s_data
         int     player_flag;
         int     collect_flag;
         int     exit_flag;
+        int     exit_flag2;
 }                                       t_data;
 
 void init_game(t_data *map);

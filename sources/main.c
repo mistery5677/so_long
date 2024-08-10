@@ -163,8 +163,13 @@ int main(int argc, char **argv)
         if(argc > 1 && argc < 3)
         {
                 read_map(&data, argv[1]);
+                if(check_map(&data) == 0)
+                {
                         init_game(&data);
                         gameplay(&data);
                         mlx_loop(data.mlx);
+                }
+                else
+                        free_map(&data);
         }
 }       

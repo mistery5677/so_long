@@ -34,8 +34,23 @@ void move_right(t_data *data, int x, int y)
         temp = x + 1;
         if(verify_move(data, temp, y) == 0)
         {
-                data->map[y][x] = '0';
-                img_draw(data, data->back, x, y);
+                if(data->map[y][temp] == 'E')
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                        data->exit_flag = 0;
+                }
+                else if(data->exit_flag == 0)
+                {
+                        data->map[y][x] = 'E';
+                        img_draw(data, data->exit, x, y);
+                        data->exit_flag = 1;
+                }
+                else
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                }
                 x++;
                 data->map[y][x] = 'P';
                 img_draw(data, data->player, x, y);
@@ -50,8 +65,23 @@ void move_left(t_data *data, int x, int y)
         temp = x - 1;
         if(verify_move(data, temp, y) == 0)
         {
-                data->map[y][x] = '0';
-                img_draw(data, data->back, x, y);
+                if(data->map[y][temp] == 'E')
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                        data->exit_flag = 0;
+                } 
+                else if(data->exit_flag == 0)
+                {
+                        data->map[y][x] = 'E';
+                        img_draw(data, data->exit, x, y);
+                        data->exit_flag = 1;
+                }
+                else
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                }
                 x--;
                 data->map[y][x] = 'P';
                 img_draw(data, data->player, x, y);
@@ -66,8 +96,23 @@ void move_up(t_data *data, int x, int y)
         temp = y - 1;
         if(verify_move(data, x, temp) == 0)
         {
-                data->map[y][x] = '0';
-                img_draw(data, data->back, x, y);
+                if(data->map[temp][x] == 'E')
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                        data->exit_flag = 0;
+                }
+                else if(data->exit_flag == 0)
+                {
+                        data->map[y][x] = 'E';
+                        img_draw(data, data->exit, x, y);
+                        data->exit_flag = 1;
+                }
+                else
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                }
                 y--;
                 data->map[y][x] = 'P';
                 img_draw(data, data->player, x, y);
@@ -82,8 +127,23 @@ void move_down(t_data *data, int x, int y)
         temp = y + 1;
         if(verify_move(data, x, temp) == 0)
         {
-                data->map[y][x] = '0';
-                img_draw(data, data->back, x, y);
+                if(data->map[temp][x] == 'E')
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                        data->exit_flag = 0;
+                }
+                else if(data->exit_flag == 0)
+                {
+                        data->map[y][x] = 'E';
+                        img_draw(data, data->exit, x, y);
+                        data->exit_flag = 1;
+                }
+                else
+                {
+                        data->map[y][x] = '0';
+                        img_draw(data, data->back, x, y);
+                }
                 y++;
                 data->map[y][x] = 'P';
                 img_draw(data, data->player, x, y);

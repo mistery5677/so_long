@@ -50,7 +50,8 @@ static void init_objects(t_data *data)
         data->back_flag = 0;
         data->player_flag = 0;
         data->collect_flag = 0;
-        data->exit_flag = 0;   
+        data->exit_flag = 0;
+        data->exit_flag2 = 0;
 }
 
 static void check_objects(t_data *data)
@@ -84,7 +85,7 @@ int check_map(t_data* data)
 {
         init_objects(data);
         check_objects(data);
-        if(data->wall_flag == 1 && data->back_flag == 1 && data->collect_flag == 1 && data->player_flag == 1 && data->exit_flag == 1)
+        if(data->wall_flag != 1 || data->back_flag != 1 || data->collect_flag != 1 || data->player_flag != 1 || data->exit_flag != 1)
                 return 1;
         else if(check_rectangle(data) == 1)
                 return 1;
