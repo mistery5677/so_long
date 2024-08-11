@@ -52,8 +52,6 @@ static void print_exit(t_data *data)
         int x;
 
         y = 0;
-        mlx_destroy_image(data->mlx, data->exit);
-        data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit2.xpm", &data->width, &data->height);
         while(data->map[y] && data->exit_flag2 == 0)
         {
                 x = 0;
@@ -61,6 +59,8 @@ static void print_exit(t_data *data)
                 {
                         if(data->map[y][x] == 'E')
                         {
+                                mlx_destroy_image(data->mlx, data->exit);
+                                data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit2.xpm", &data->width, &data->height);
                                 data->exit_flag2 = 1;
                                 mlx_put_image_to_window(data->mlx, data->win, data->exit, x * 32, y * 32);
                                 return;
