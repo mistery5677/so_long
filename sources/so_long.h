@@ -33,6 +33,8 @@ typedef struct s_data
         int     collect_flag;
         int     exit_flag;
         int     exit_flag2;
+        int     player_y;
+        int     player_x;
 }                                       t_data;
 
 void init_game(t_data *map);
@@ -48,6 +50,6 @@ void move_up(t_data *data, int x, int y);
 void move_down(t_data *data, int x, int y);
 int close_game(t_data *data);
 void free_map(char **map);
-int check_map(t_data* data);
+int check_map(t_data* data, char *path);
 
 #endif

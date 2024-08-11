@@ -60,6 +60,7 @@ static void check_objects(t_data *data)
         int x;
 
         y = 0;
+        init_objects(data);
         while(data->map[y])
         {
                 x = 0;
@@ -81,16 +82,80 @@ static void check_objects(t_data *data)
         }
 }
 
-/* static void flood_map(t_data *data)
+static int size_lines(char **map)
 {
+        int x;
+        
+        x = 0;
+        while(map[x])
+                x++;
+        return x;
+}
 
+static void find_player(t_data *data)
+{
+        int x;
+        int y;
+
+        y = 0;
+        while(data->map[y])
+        {
+                x = 0;
+                while(data->map[y][x])
+                {
+                        if(data->map[y][x] == 'P')
+                        {
+                                data->player_x = x;
+                                data->player_y = y;
+                                return ;
+                        }
+                        x++;
+                }
+                y++;
+        }
+}
+
+/* static void print_map(char **map)
+{
+        int i;
+
+        i = 0;
+        while(map[i])
+        {
+                printf("%s\n", map[i]);
+                i++;
+        }
 } */
 
-int check_map(t_data* data)
+static void flood_map(t_data *data, int x, int y)
 {
-        init_objects(data);
+        int collumns;
+        int lines;
+
+        lines = size_lines(data->map);
+        collumns = ft_strlen(data->map[0]);
+        if(y < 0 || y > lines || x < 0 || x > collumns || data->map[y][x] == '1' || data->map[y][x] == '2')
+                return ;
+        else 
+        {
+                data->map[y][x] = '2';
+                flood_map(data, x, y - 1);
+                flood_map(data, x, y + 1);
+                flood_map(data, x + 1, y);
+                flood_map(data, x - 1, y);                
+        }
+}
+
+int check_map(t_data* data, char *path)
+{
+        find_player(data);
+        flood_map(data, data->player_x, data->player_y);
         check_objects(data);
-        //flood_map(data);
+        if(data->exit_flag >= 1 || data->collect_flag >= 1)
+                return 1;
+        free_map(data->map);
+        read_map(data, path);
+        check_objects(data);
         if(data->wall_flag != 1 || data->back_flag != 1 || data->collect_flag != 1 || data->player_flag != 1 || data->exit_flag != 1)
                 return 1;
         else if(check_rectangle(data) == 1)
