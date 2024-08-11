@@ -47,7 +47,7 @@ void move_left(t_data *data, int x, int y);
 void move_up(t_data *data, int x, int y);
 void move_down(t_data *data, int x, int y);
 int close_game(t_data *data);
-void free_map(t_data *data);
+void free_map(char **map);
 int check_map(t_data* data);
 
 #endif

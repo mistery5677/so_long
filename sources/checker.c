@@ -81,10 +81,16 @@ static void check_objects(t_data *data)
         }
 }
 
+/* static void flood_map(t_data *data)
+{
+
+} */
+
 int check_map(t_data* data)
 {
         init_objects(data);
         check_objects(data);
+        //flood_map(data);
         if(data->wall_flag != 1 || data->back_flag != 1 || data->collect_flag != 1 || data->player_flag != 1 || data->exit_flag != 1)
                 return 1;
         else if(check_rectangle(data) == 1)

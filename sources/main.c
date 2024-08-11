@@ -170,6 +170,6 @@ int main(int argc, char **argv)
                         mlx_loop(data.mlx);
                 }
                 else
-                        free_map(&data);
+                        free_map(data.map);
         }
 }       

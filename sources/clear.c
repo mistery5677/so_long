@@ -1,21 +1,21 @@
 #include "so_long.h"
 
-void free_map(t_data *data)
+void free_map(char **map)
 {
         int i;
 
         i = 0;
-        while(data->map[i])
+        while(map[i])
         {
-                free(data->map[i]);
+                free(map[i]);
                 i++;
         }
-        free(data->map);
+        free(map);
 }
 
 int close_game(t_data *data)
 {
-        free_map(data);
+        free_map(data->map);
         mlx_destroy_image(data->mlx, data->back);
         mlx_destroy_image(data->mlx, data->wall);
         mlx_destroy_image(data->mlx, data->collect);
