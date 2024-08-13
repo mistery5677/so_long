@@ -26,7 +26,6 @@ static int	protect(const char *format)
 	{
 		if (format[i] == '%')
 		{
-
 			count++;
 			i++;
 			if (format[i] == '%' || format[i] == 's' || format[i] == 'c'

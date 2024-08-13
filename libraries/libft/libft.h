@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:27:04 by miafonso          #+#    #+#             */
-/*   Updated: 2024/04/10 14:46:30 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:03:22 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <fcntl.h>
+# include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 typedef struct s_list
 {
@@ -74,14 +74,14 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_print_add(unsigned long long nbr);
-size_t	ft_printstr(const char *str);
-size_t	ft_printnbr(int nbr);
-size_t	ft_print_unsigned(unsigned int nbr);
-size_t	ft_print_hex(unsigned int num, int format);
-char *get_next_line(int fd);
-int clean_buffer(char *str);
-char *ft_strjoin_gnl(char *s1, char *s2);
+int					ft_printf(const char *format, ...);
+int					ft_putchar(char c);
+int					ft_print_add(unsigned long long nbr);
+size_t				ft_printstr(const char *str);
+size_t				ft_printnbr(int nbr);
+size_t				ft_print_unsigned(unsigned int nbr);
+size_t				ft_print_hex(unsigned int num, int format);
+char				*get_next_line(int fd);
+int					clean_buffer(char *str);
+char				*ft_strjoin_gnl(char *s1, char *s2);
 #endif
