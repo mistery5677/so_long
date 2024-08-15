@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:49:26 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/13 22:52:49 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/15 18:54:28 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
 	int		exit_flag2;
 	int		player_y;
 	int		player_x;
+	int		moves;
 }			t_data;
 
 void		init_game(t_data *map);
@@ -54,7 +55,6 @@ void		read_map(t_data *data, char *path);
 int			map_draw(t_data *data);
 void		img_draw(t_data *data, void *img, int x, int y);
 void		gameplay(t_data *data);
-// moves
 void		move_right(t_data *data, int x, int y);
 void		move_left(t_data *data, int x, int y);
 void		move_up(t_data *data, int x, int y);
