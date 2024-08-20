@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:50:25 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/13 18:56:01 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/20 23:44:11 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,36 @@ static void	check_objects(t_data *data)
 
 static void	flood_map(t_data *data, int x, int y)
 {
-	if (y < 0 || y > data->width || x < 0 || x > data->height
+	if (y < 0 || y >= data->height || x < 0 || x >= data->width
 		|| data->map[y][x] == '1' || data->map[y][x] == '2')
 		return ;
 	else
 	{
 		data->map[y][x] = '2';
-		flood_map(data, x, y - 1);
 		flood_map(data, x, y + 1);
+		flood_map(data, x, y - 1);
 		flood_map(data, x + 1, y);
 		flood_map(data, x - 1, y);
 	}
 }
+
+/* void print_map(char **map)
+{
+	int i = 0;
+	int j = 0;
+
+	while(map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			printf("%c", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+} */
 
 int	check_map(t_data *data, char *path)
 {
