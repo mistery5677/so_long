@@ -118,8 +118,8 @@ void print_map(char **map)
 
 static int pre_gameplay(t_data *data, char *path)
 {
-	find_player(data);
-	flood_map(data, data->player_x, data->player_y);
+	find_player(data, &data->player_struct);
+	flood_map(data, data->player_struct.player_x, data->player_struct.player_y);
 	check_objects(data);
 	if (data->exit_flag == 1 || data->collect_flag == 1)
 		return -1;

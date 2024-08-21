@@ -58,7 +58,7 @@ static int	find_collects(t_data *data)
 	return (collects);
 }
 
-void	find_player(t_data *data)
+void	find_player(t_data *data, t_player_struct *player_struct)
 {
 	int	x;
 	int	y;
@@ -71,8 +71,8 @@ void	find_player(t_data *data)
 		{
 			if (data->map[y][x] == 'P')
 			{
-				data->player_x = x;
-				data->player_y = y;
+				player_struct->player_x = x;
+				player_struct->player_y = y;
 				return ;
 			}
 			x++;

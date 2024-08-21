@@ -27,6 +27,12 @@
 # define RIGHT 100
 # define DOWN 115
 
+typedef struct s_player_struct
+{
+	int player_y;
+	int player_x;
+}	t_player_struct;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -45,9 +51,8 @@ typedef struct s_data
 	int		collect_flag;
 	int		exit_flag;
 	int		exit_flag2;
-	int		player_y;
-	int		player_x;
 	int		moves;
+	t_player_struct player_struct;
 }			t_data;
 
 void		init_game(t_data *map);
@@ -62,7 +67,7 @@ void		move_down(t_data *data, int x, int y);
 int			close_game(t_data *data);
 void		free_map(char **map);
 int			check_map(t_data *data, char *path);
-void		find_player(t_data *data);
+void		find_player(t_data *data, t_player_struct *player_struct);
 int			verify(int key_released, t_data *data);
 
 #endif
