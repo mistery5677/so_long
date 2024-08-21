@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void	init_objects(t_data *data)
+static void	init_flags(t_data *data)
 {
 	int i;
 
@@ -37,9 +37,7 @@ static int check_name(char *path)
 	while(path[i] && path[i] != '.')
 		i++;
 	if(path[i] == '\0' || ft_strncmp(path + i, ".ber", 4) != 0)
-	{
 		return 1;
-	}
 	return 0;
 }
 
@@ -47,19 +45,13 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc == 2 && check_name(argv[1]) == 0)
-	{
-		read_map(&data, argv[1]);
-		init_objects(&data);
-		if (check_map(&data, argv[1]) == 0)
-		{
-			init_game(&data);
-			gameplay(&data);
-			mlx_loop(data.mlx);
-		}
-		else
-			free_map(data.map);
-	}
-	else
-		ft_putstr_fd("Error\n", 2);
+	if (argc != 2 || check_name(argv[1]))
+		return ft_putstr_fd("Error\n", 2), 0;
+	read_map(&data, argv[1]);
+	init_flags(&data);
+	if (check_map(&data, argv[1]) != 0)
+		return free_map(data.map), ft_putstr_fd("Error\n", 2), 0;
+	init_game(&data);
+	gameplay(&data);
+	mlx_loop(data.mlx);
 }

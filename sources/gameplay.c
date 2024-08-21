@@ -44,8 +44,7 @@ void	gameplay(t_data *data)
 {
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_press, data);
 	mlx_hook(data->win, KeyRelease, KeyReleaseMask, verify, data);
-	mlx_hook(data->win, 17, 1L << 17, close_game, data);
-	mlx_hook(data->win, 9, 1L << 21, map_draw, data);
+	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, close_game, data);
 }
 
 /* D = 100

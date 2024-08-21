@@ -32,7 +32,6 @@ static void	window_size_init(t_data *data)
 
 	i = 0;
 	data->width = ft_strlen(data->map[0]) * 32;
-	printf("width %d\n", data->width);
 	while (data->map[i])
 		i++;
 	data->height = i * 32;
