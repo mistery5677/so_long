@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static int	finish(t_data *data)
+static int	finish(t_map *map)
 {
 	int	y;
 	int	x;
@@ -20,12 +20,12 @@ static int	finish(t_data *data)
 
 	exit = 0;
 	y = 0;
-	while (data->map[y])
+	while (map->matrix[y])
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (map->matrix[y][x])
 		{
-			if (data->map[y][x] == 'E')
+			if (map->matrix[y][x] == 'E')
 				exit = 1;
 			x++;
 		}
@@ -36,7 +36,7 @@ static int	finish(t_data *data)
 	return (1);
 }
 
-static int	find_collects(t_data *data)
+static int	find_collects(t_map *map)
 {
 	int	y;
 	int	x;
@@ -44,12 +44,12 @@ static int	find_collects(t_data *data)
 
 	collects = 0;
 	y = 0;
-	while (data->map[y])
+	while (map->matrix[y])
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (map->matrix[y][x])
 		{
-			if (data->map[y][x] == 'C')
+			if (map->matrix[y][x] == 'C')
 				collects++;
 			x++;
 		}
@@ -58,21 +58,21 @@ static int	find_collects(t_data *data)
 	return (collects);
 }
 
-void	find_player(t_data *data, t_player_struct *player_struct)
+void	find_player(t_map *map, t_player_info *player)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (data->map[y])
+	while (map->matrix[y])
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (map->matrix[y][x])
 		{
-			if (data->map[y][x] == 'P')
+			if (map->matrix[y][x] == 'P')
 			{
-				player_struct->player_x = x;
-				player_struct->player_y = y;
+				player->x = x;
+				player->y = y;
 				return ;
 			}
 			x++;
@@ -81,24 +81,24 @@ void	find_player(t_data *data, t_player_struct *player_struct)
 	}
 }
 
-static void	print_exit(t_data *data)
+static void	print_exit(t_data *data, t_map *map, t_flags *flags)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (data->map[y] && data->exit_flag2 == 0)
+	while (map->matrix[y] && flags->exit2 == 0)
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (map->matrix[y][x])
 		{
-			if (data->map[y][x] == 'E')
+			if (map->matrix[y][x] == 'E')
 			{
-				mlx_destroy_image(data->mlx, data->exit);
-				data->exit = mlx_xpm_file_to_image(data->mlx,
-						"./assets/exit2.xpm", &data->width, &data->height);
-				data->exit_flag2 = 1;
-				mlx_put_image_to_window(data->mlx, data->win, data->exit, x
+				mlx_destroy_image(data->mlx, data->img.exit);
+				data->img.exit = mlx_xpm_file_to_image(data->mlx,
+						"./assets/exit2.xpm", &map->width, &map->height);
+				flags->exit2 = 1;
+				mlx_put_image_to_window(data->mlx, data->win, data->img.exit, x
 					* 32, y * 32);
 				return ;
 			}
@@ -111,9 +111,9 @@ static void	print_exit(t_data *data)
 int	verify(int key_released, t_data *data)
 {
 	(void)key_released;
-	if (find_collects(data) == 0)
-		print_exit(data);
-	if (finish(data) == 0 && data->exit_flag2 == 1)
+	if (find_collects(&data->map) == 0)
+		print_exit(data, &data->map, &data->flags);
+	if (finish(&data->map) == 0 && data->flags.exit2 == 1)
 		close_game(data);
 	return (0);
 }

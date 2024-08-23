@@ -17,25 +17,18 @@ static int	key_press(int key_pressed, t_data *data)
 	int	x;
 	int	y;
 
-	y = 0;
-	x = 0;
-	while (data->map[y] && data->map[y][x] != 'P')
-	{
-		x = 0;
-		while (data->map[y][x] && data->map[y][x] != 'P')
-			x++;
-		if (data->map[y][x] != 'P')
-			y++;
-	}
-	if (key_pressed == 100 || key_pressed == 65363)
-		move_right(data, x, y);
-	else if (key_pressed == 97 || key_pressed == 65361)
-		move_left(data, x, y);
-	else if (key_pressed == 119 || key_pressed == 65362)
-		move_up(data, x, y);
-	else if (key_pressed == 115 || key_pressed == 65364)
-		move_down(data, x, y);
-	else if (key_pressed == 65307)
+	find_player(&data->map, &data->player_info);
+	y = data->player_info.y;
+	x = data->player_info.x;
+	if (key_pressed == RIGHT || key_pressed == RIGHT_ARROW)
+		move_right(data, &data->img, x, y);
+	else if (key_pressed == LEFT || key_pressed == LEFT_ARROW)
+		move_left(data, &data->img, x, y);
+	else if (key_pressed == UP || key_pressed == UP_ARROW)
+		move_up(data, &data->img, x, y);
+	else if (key_pressed == DOWN || key_pressed == DOWN_ARROW)
+		move_down(data, &data->img, x, y);
+	else if (key_pressed == ESC)
 		close_game(data);
 	return (0);
 }

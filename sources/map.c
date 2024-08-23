@@ -12,12 +12,14 @@
 
 #include "so_long.h"
 
-void	read_map(t_data *data, char *path)
+void	read_map(t_map *map, char *path)
 {
 	int		fd;
 	char	*backup;
 	char	*str;
+	int i;
 
+	i = 0;
 	backup = ft_strdup("");
 	fd = open(path, O_RDONLY);
 	str = get_next_line(fd);
@@ -27,7 +29,11 @@ void	read_map(t_data *data, char *path)
 		free(str);
 		str = get_next_line(fd);
 	}
-	data->map = ft_split(backup, '\n');
+	map->matrix = ft_split(backup, '\n');
+	while(map->matrix[i])
+		i++;
+	map->height = i;
+	map->width = ft_strlen(map->matrix[0]);
 	free(backup);
 	free(str);
 	close(fd);

@@ -12,36 +12,37 @@
 
 #include "so_long.h"
 
-static void	load_img(t_data *data)
+static void	load_img(t_data *data, t_map *map, t_img *img)
 {
-	data->wall = mlx_xpm_file_to_image(data->mlx, "./assets/bush.xpm",
-			&data->width, &data->height);
-	data->back = mlx_xpm_file_to_image(data->mlx, "./assets/grass.xpm",
-			&data->width, &data->height);
-	data->player = mlx_xpm_file_to_image(data->mlx, "./assets/dog.xpm",
-			&data->width, &data->height);
-	data->collect = mlx_xpm_file_to_image(data->mlx, "./assets/bone.xpm",
-			&data->width, &data->height);
-	data->exit = mlx_xpm_file_to_image(data->mlx, "./assets/exit.xpm",
-			&data->width, &data->height);
+	img->wall = mlx_xpm_file_to_image(data->mlx, TREE,
+			&map->width, &map->height);
+	img->back = mlx_xpm_file_to_image(data->mlx, GRASS,
+			&map->width, &map->height);
+	img->player = mlx_xpm_file_to_image(data->mlx, DOG_RIGHT,
+			&map->width, &map->height);
+	img->collect = mlx_xpm_file_to_image(data->mlx, BONE,
+			&map->width, &map->height);
+	img->exit = mlx_xpm_file_to_image(data->mlx, HOUSE,
+			&map->width, &map->height);
 }
 
-static void	window_size_init(t_data *data)
+static void	window_size_init(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	data->width = ft_strlen(data->map[0]) * 32;
-	while (data->map[i])
+	map->width = ft_strlen(map->matrix[0]) * 32;
+	while (map->matrix[i])
 		i++;
-	data->height = i * 32;
+	map->height = i * 32;
 }
 
 void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	window_size_init(data);
-	data->win = mlx_new_window(data->mlx, data->width, data->height, "So_long");
-	load_img(data);
-	map_draw(data);
+	window_size_init(&data->map);
+	data->flags.player = 2;
+	data->win = mlx_new_window(data->mlx, data->map.width, data->map.height, "So_long");
+	load_img(data, &data->map, &data->img);
+	map_draw(data, &data->map, &data->img);
 }

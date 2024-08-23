@@ -12,121 +12,89 @@
 
 #include "so_long.h"
 
-static int	verify_move(t_data *data, int x, int y)
+void	move_right(t_data *data, t_img *img, int x, int y)
 {
-	if (data->map[y][x] == '1' || x < 0 || y < 0)
-		return (1);
-	return (0);
+	if (data->map.matrix[y][x + 1] == '1')
+		return ;
+	
+	if (data->flags.exit == 0)
+	{
+		data->map.matrix[y][x] = 'E';
+		img_draw(data, img->exit, x, y);
+	}
+	else
+	{
+		data->map.matrix[y][x] = '0';
+		img_draw(data, img->back, x, y);
+	}
+	x++;
+	verify_exit (data, x, y);
+	if(data->flags.player == 3)
+		change_img(data, DOG_RIGHT);
+	data->flags.player = 2;
+	data->map.matrix[y][x] = 'P';
+	img_draw (data, img->player, x, y);
 }
 
-void	move_right(t_data *data, int x, int y)
+void	move_left(t_data *data, t_img *img, int x, int y)
 {
-	if (verify_move(data, x + 1, y) == 0)
+	if (data->map.matrix[y][x - 1] == '1')
+		return ;
+	if (data->flags.exit == 0)
 	{
-		if (data->map[y][x + 1] == 'E')
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-			data->exit_flag = 0;
-		}
-		else if (data->exit_flag == 0)
-		{
-			data->map[y][x] = 'E';
-			img_draw(data, data->exit, x, y);
-			data->exit_flag = 1;
-		}
-		else
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-		}
-		x++;
-		data->map[y][x] = 'P';
-		img_draw(data, data->player, x, y);
+		data->map.matrix[y][x] = 'E';
+		img_draw(data, img->exit, x, y);
 	}
-	return ;
+	else
+	{
+		data->map.matrix[y][x] = '0';
+		img_draw(data, img->back, x, y);
+	}
+	x--;
+	verify_exit (data, x, y);
+	if(data->flags.player == 2)
+		change_img(data, DOG_LEFT);
+	data->flags.player = 3;
+	data->map.matrix[y][x] = 'P';
+	img_draw (data, img->player, x, y);
 }
 
-void	move_left(t_data *data, int x, int y)
+void	move_up(t_data *data, t_img *img, int x, int y)
 {
-	if (verify_move(data, x - 1, y) == 0)
+	if (data->map.matrix[y - 1][x] == '1')
+		return ;
+	if (data->flags.exit == 0)
 	{
-		if (data->map[y][x - 1] == 'E')
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-			data->exit_flag = 0;
-		}
-		else if (data->exit_flag == 0)
-		{
-			data->map[y][x] = 'E';
-			img_draw(data, data->exit, x, y);
-			data->exit_flag = 1;
-		}
-		else
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-		}
-		x--;
-		data->map[y][x] = 'P';
-		img_draw(data, data->player, x, y);
+		data->map.matrix[y][x] = 'E';
+		img_draw(data, img->exit, x, y);
 	}
-	return ;
+	else
+	{
+		data->map.matrix[y][x] = '0';
+		img_draw(data, img->back, x, y);
+	}
+	y--;
+	verify_exit (data, x, y);
+	data->map.matrix[y][x] = 'P';
+	img_draw (data, img->player, x, y);
 }
 
-void	move_up(t_data *data, int x, int y)
+void	move_down(t_data *data, t_img *img, int x, int y)
 {
-	if (verify_move(data, x, y - 1) == 0)
+	if (data->map.matrix[y + 1][x] == '1')
+		return ;
+	if (data->flags.exit == 0)
 	{
-		if (data->map[y - 1][x] == 'E')
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-			data->exit_flag = 0;
-		}
-		else if (data->exit_flag == 0)
-		{
-			data->map[y][x] = 'E';
-			img_draw(data, data->exit, x, y);
-			data->exit_flag = 1;
-		}
-		else
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-		}
-		y--;
-		data->map[y][x] = 'P';
-		img_draw(data, data->player, x, y);
+		data->map.matrix[y][x] = 'E';
+		img_draw(data, img->exit, x, y);
 	}
-	return ;
-}
-
-void	move_down(t_data *data, int x, int y)
-{
-	if (verify_move(data, x, y + 1) == 0)
+	else
 	{
-		if (data->map[y + 1][x] == 'E')
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-			data->exit_flag = 0;
-		}
-		else if (data->exit_flag == 0)
-		{
-			data->map[y][x] = 'E';
-			img_draw(data, data->exit, x, y);
-			data->exit_flag = 1;
-		}
-		else
-		{
-			data->map[y][x] = '0';
-			img_draw(data, data->back, x, y);
-		}
-		y++;
-		data->map[y][x] = 'P';
-		img_draw(data, data->player, x, y);
+		data->map.matrix[y][x] = '0';
+		img_draw(data, img->back, x, y);
 	}
-	return ;
+	y++;
+	verify_exit (data, x, y);
+	data->map.matrix[y][x] = 'P';
+	img_draw (data, img->player, x, y);
 }

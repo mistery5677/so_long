@@ -27,12 +27,12 @@ void	free_map(char **map)
 
 int	close_game(t_data *data)
 {
-	free_map(data->map);
-	mlx_destroy_image(data->mlx, data->back);
-	mlx_destroy_image(data->mlx, data->wall);
-	mlx_destroy_image(data->mlx, data->collect);
-	mlx_destroy_image(data->mlx, data->exit);
-	mlx_destroy_image(data->mlx, data->player);
+	free_map(data->map.matrix);
+	mlx_destroy_image(data->mlx, data->img.back);
+	mlx_destroy_image(data->mlx, data->img.wall);
+	mlx_destroy_image(data->mlx, data->img.collect);
+	mlx_destroy_image(data->mlx, data->img.exit);
+	mlx_destroy_image(data->mlx, data->img.player);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);

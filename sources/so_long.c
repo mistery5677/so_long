@@ -12,21 +12,16 @@
 
 #include "so_long.h"
 
-static void	init_flags(t_data *data)
+static void	init_flags(t_flags *flags, t_data *data)
 {
-	int i;
-
-	i = 0;
-	data->wall_flag = 0;
-	data->back_flag = 0;
-	data->player_flag = 0;
-	data->collect_flag = 0;
-	data->exit_flag = 0;
-	data->exit_flag2 = 0;
-	while(data->map[i])
-		i++;
-	data->height = i;
-	data->width = ft_strlen(data->map[0]);
+	flags->wall = 0;
+	flags->back = 0;
+	flags->player = 0;
+	flags->collect = 0;
+	flags->exit = 0;
+	flags->exit2 = 0;
+	data->moves = 0;
+	ft_printf("Moves %d\n", data->moves);
 }
 
 static int check_name(char *path)
@@ -47,10 +42,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || check_name(argv[1]))
 		return ft_putstr_fd("Error\n", 2), 0;
-	read_map(&data, argv[1]);
-	init_flags(&data);
-	if (check_map(&data, argv[1]) != 0)
-		return free_map(data.map), ft_putstr_fd("Error\n", 2), 0;
+	read_map(&data.map, argv[1]);
+	init_flags(&data.flags, &data);
+	if (check_map(&data, &data.flags, argv[1]) != 0)
+		return free_map(data.map.matrix), ft_putstr_fd("Error\n", 2), 0;
 	init_game(&data);
 	gameplay(&data);
 	mlx_loop(data.mlx);

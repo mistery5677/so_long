@@ -4,7 +4,7 @@ LIBFT			=	$(LIBFT_PATH)/libft.a
 MINILIBX_PATH		=	./libraries/minilibx
 MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 
-SOURCES_FILES		=	so_long.c init_win.c map.c draw_map.c gameplay.c moves.c checker.c clear.c verify_exit.c
+SOURCES_FILES		=	so_long.c init_win.c map.c draw_map.c gameplay.c moves.c moves_utils.c checker.c clear.c verify_exit.c
 
 SOURCES_DIR		=	sources
 
