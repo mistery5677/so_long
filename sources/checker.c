@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:50:25 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/24 00:26:14 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 21:34:35 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,19 @@ static int	check_border(t_map *map)
 	int	y;
 
 	y = 0;
-	if(check_row(map->matrix[y], '1') == -1)
-		return -1;
+	if (check_row(map->matrix[y], '1') == -1)
+		return (-1);
 	y++;
 	while (map->matrix[y + 1] != NULL)
 	{
-		if (map->matrix[y][map->width - 1] != '1' || map->matrix[y][0] != '1')
+		if (map->matrix[y][map->height - 1] != '1' || map->matrix[y][0] != '1')
 			return (-1);
 		y++;
 	}
-	if(check_row(map->matrix[y], '1') == -1)
-		return -1;
+	if (check_row(map->matrix[y], '1') == -1)
+		return (-1);
 	return (0);
 }
-
-void print_map(char **map)
-{
-	int i = 0;
-	int x = 0;
-	while(map[i])
-	{
-		x = 0;
-		while(map[i][x])
-		{
-			printf("%c", map[i][x]);
-			x++;	
-		}
-		printf("\n");
-		i++;
-	}
-}
-
 
 static void	check_objects(t_flags *flags, t_map *map)
 {

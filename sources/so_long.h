@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:49:26 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/24 00:23:56 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 21:33:58 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int					verify(int key_released, t_data *data);
 void				verify_exit(t_data *data, int x, int y);
 void				change_img(t_data *data, char *path);
 void				flood_map(t_map *map, int x, int y);
-int     check_row(char *row, char wall);
-void	init_flags(t_flags *flags, t_data *data);
+int					check_row(char *row, char wall);
+void				init_flags(t_flags *flags, t_data *data);
 
 #endif

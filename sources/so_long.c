@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 22:49:03 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/24 00:24:16 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 22:37:30 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	main(int argc, char **argv)
 		return (free_map(data.map.matrix), ft_putstr_fd("Error\n", 2), 0);
 	init_game(&data);
 	gameplay(&data);
+	mlx_string_put(data.mlx, data.win, 15, 15, 1000000, "Moves:0");
 	mlx_loop(data.mlx);
 }

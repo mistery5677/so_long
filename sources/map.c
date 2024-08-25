@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 20:13:55 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/23 22:48:30 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 18:02:39 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	read_map(t_map *map, char *path)
 	map->matrix = ft_split(backup, '\n');
 	while (map->matrix[i])
 		i++;
-	map->height = i;
-	map->width = ft_strlen(map->matrix[0]);
+	map->width = i;
+	map->height = ft_strlen(map->matrix[0]);
 	free(backup);
 	free(str);
 	close(fd);

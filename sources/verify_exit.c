@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:21:43 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/13 22:53:23 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 18:03:02 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	print_exit(t_data *data, t_map *map, t_flags *flags)
 			{
 				mlx_destroy_image(data->mlx, data->img.exit);
 				data->img.exit = mlx_xpm_file_to_image(data->mlx,
-						"./assets/exit2.xpm", &map->width, &map->height);
+						"./assets/exit2.xpm", &map->height, &map->width);
 				flags->exit2 = 1;
 				mlx_put_image_to_window(data->mlx, data->win, data->img.exit, x
 					* 32, y * 32);
