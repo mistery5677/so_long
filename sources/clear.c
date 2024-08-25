@@ -6,7 +6,7 @@
 /*   By: mistery576 <mistery576@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:56:18 by mistery576        #+#    #+#             */
-/*   Updated: 2024/08/13 18:56:23 by mistery576       ###   ########.fr       */
+/*   Updated: 2024/08/25 16:41:23 by mistery576       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	free_map(char **map)
 
 int	close_game(t_data *data)
 {
+	if (data->moves < 0)
+		ft_putstr_fd("Too many moves\n", 2);
 	free_map(data->map.matrix);
 	mlx_destroy_image(data->mlx, data->img.back);
 	mlx_destroy_image(data->mlx, data->img.wall);
