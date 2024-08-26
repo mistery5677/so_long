@@ -71,6 +71,8 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
+	int				screen_h;
+	int				screen_w;
 	int				moves;
 	t_img			img;
 	t_flags			flags;

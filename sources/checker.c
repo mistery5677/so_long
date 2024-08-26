@@ -96,8 +96,6 @@ int	check_map(t_data *data, t_flags *flags, char *path)
 	if (flags->collect < 1 || flags->player != 1 || flags->exit != 1
 		|| flags->errors == -1)
 		return (-1);
-	else if (data->map.height > 1980 || data->map.width > 1000)
-		return (-1);
 	else if (check_rectangle(&data->map) == -1)
 		return (-1);
 	else if (check_border(&data->map) == -1)
