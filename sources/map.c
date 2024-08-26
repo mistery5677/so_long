@@ -32,8 +32,8 @@ void	read_map(t_map *map, char *path)
 	map->matrix = ft_split(backup, '\n');
 	while (map->matrix[i])
 		i++;
-	map->width = i;
-	map->height = ft_strlen(map->matrix[0]);
+	map->width = i * 32;
+	map->height = ft_strlen(map->matrix[0]) * 32;
 	free(backup);
 	free(str);
 	close(fd);

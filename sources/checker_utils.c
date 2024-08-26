@@ -35,6 +35,7 @@ void	init_flags(t_flags *flags, t_data *data)
 	flags->collect = 0;
 	flags->exit = 0;
 	flags->exit2 = 0;
+	flags->errors = 0;
 	data->moves = 0;
 }
 

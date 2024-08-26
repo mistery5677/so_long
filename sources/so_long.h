@@ -55,6 +55,7 @@ typedef struct s_flags
 	int				collect;
 	int				exit;
 	int				exit2;
+	int				errors;
 }					t_flags;
 
 typedef struct s_img

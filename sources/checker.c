@@ -38,7 +38,8 @@ static int	check_border(t_map *map)
 	y++;
 	while (map->matrix[y + 1] != NULL)
 	{
-		if (map->matrix[y][map->height - 1] != '1' || map->matrix[y][0] != '1')
+		if (map->matrix[y][(map->height / 32) - 1] != '1'
+		|| map->matrix[y][0] != '1')
 			return (-1);
 		y++;
 	}
@@ -58,7 +59,7 @@ static void	check_objects(t_flags *flags, t_map *map)
 		x = 0;
 		while (map->matrix[y][x])
 		{
-			if (map->matrix[y][x] == '1')
+			if (map->matrix[y][x] == '1' && flags->errors != -1)
 				flags->wall++;
 			else if (map->matrix[y][x] == '0')
 				flags->back++;
@@ -68,6 +69,8 @@ static void	check_objects(t_flags *flags, t_map *map)
 				flags->player++;
 			else if (map->matrix[y][x] == 'E')
 				flags->exit++;
+			else if (map->matrix[y][x] != '\0')
+				flags->errors = -1;
 			x++;
 		}
 		y++;
@@ -90,7 +93,10 @@ static int	pre_gameplay(t_data *data, t_flags *flags, char *path)
 int	check_map(t_data *data, t_flags *flags, char *path)
 {
 	check_objects(flags, &data->map);
-	if (flags->collect < 1 || flags->player != 1 || flags->exit != 1)
+	if (flags->collect < 1 || flags->player != 1 || flags->exit != 1
+		|| flags->errors == -1)
+		return (-1);
+	else if (data->map.height > 1980 || data->map.width > 1000)
 		return (-1);
 	else if (check_rectangle(&data->map) == -1)
 		return (-1);

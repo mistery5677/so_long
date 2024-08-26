@@ -26,23 +26,11 @@ static void	load_img(t_data *data, t_map *map, t_img *img)
 			&map->width);
 }
 
-static void	window_size_init(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	map->width = ft_strlen(map->matrix[0]) * 32;
-	while (map->matrix[i])
-		i++;
-	map->height = i * 32;
-}
-
 void	init_game(t_data *data)
 {
 	data->mlx = mlx_init();
-	window_size_init(&data->map);
 	data->flags.player = 2;
-	data->win = mlx_new_window(data->mlx, data->map.width, data->map.height,
+	data->win = mlx_new_window(data->mlx, data->map.height, data->map.width,
 			"So_long");
 	mlx_string_put((*data).mlx, (*data).win, 10, 10, 1000000, "moves");
 	load_img(data, &data->map, &data->img);
